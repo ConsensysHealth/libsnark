@@ -50,6 +50,8 @@ References:
 #include <libsnark/relations/constraint_satisfaction_problems/r1cs/r1cs.hpp>
 #include <libsnark/zk_proof_systems/ppzksnark/r1cs_gg_ppzksnark/r1cs_gg_ppzksnark_params.hpp>
 
+#include <libsnark/zk_proof_systems/ppzksnark/profiling/generic_profiling.hpp>
+
 namespace libsnark {
 
 /******************************** Proving key ********************************/
@@ -362,6 +364,12 @@ public:
 template<typename ppT>
 r1cs_gg_ppzksnark_keypair<ppT> r1cs_gg_ppzksnark_generator(const r1cs_gg_ppzksnark_constraint_system<ppT> &cs);
 
+
+template<typename ppT>
+r1cs_gg_ppzksnark_proof<ppT> r1cs_gg_ppzksnark_prover_impl(const r1cs_gg_ppzksnark_proving_key<ppT> &,
+                                                           const r1cs_gg_ppzksnark_primary_input<ppT> &,
+                                                           const r1cs_gg_ppzksnark_auxiliary_input<ppT> &);
+
 /**
  * A prover algorithm for the R1CS GG-ppzkSNARK.
  *
@@ -373,7 +381,10 @@ r1cs_gg_ppzksnark_keypair<ppT> r1cs_gg_ppzksnark_generator(const r1cs_gg_ppzksna
 template<typename ppT>
 r1cs_gg_ppzksnark_proof<ppT> r1cs_gg_ppzksnark_prover(const r1cs_gg_ppzksnark_proving_key<ppT> &pk,
                                                       const r1cs_gg_ppzksnark_primary_input<ppT> &primary_input,
-                                                      const r1cs_gg_ppzksnark_auxiliary_input<ppT> &auxiliary_input);
+                                                      const r1cs_gg_ppzksnark_auxiliary_input<ppT> &auxiliary_input)
+{
+  return PROFILEIT(r1cs_gg_ppzksnark_prover_impl<ppT>)(pk, primary_input, auxiliary_input);
+}
 
 /*
   Below are four variants of verifier algorithm for the R1CS GG-ppzkSNARK.
