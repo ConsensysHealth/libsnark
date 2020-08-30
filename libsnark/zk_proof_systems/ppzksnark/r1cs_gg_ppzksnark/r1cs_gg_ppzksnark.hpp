@@ -50,7 +50,7 @@ References:
 #include <libsnark/relations/constraint_satisfaction_problems/r1cs/r1cs.hpp>
 #include <libsnark/zk_proof_systems/ppzksnark/r1cs_gg_ppzksnark/r1cs_gg_ppzksnark_params.hpp>
 
-#include <libsnark/zk_proof_systems/ppzksnark/profiling/generic_profiling.hpp>
+#include <libsnark/profiling/generic_profiling.hpp>
 
 namespace libsnark {
 

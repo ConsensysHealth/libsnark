@@ -40,6 +40,7 @@ add_library(
   relations/ram_computations/memory/ra_memory.cpp
   relations/ram_computations/rams/fooram/fooram_aux.cpp
   relations/ram_computations/rams/tinyram/tinyram_aux.cpp
+  profiling/generic_profiling.cpp
 )
 if("${USE_LINKED_LIBRARIES}")
   target_link_libraries(
