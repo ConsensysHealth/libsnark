@@ -25,6 +25,9 @@ namespace libsnark {
       typename std::result_of<Fn(Args...)>::type
       profiler_wrapper(Args... args) {
 
+        // this might wipe out previous metrics so make sure to collect in between...
+        turn_on_profiling();
+
         libff::enter_block("Call to r1cs_XX_ppzksnark_prover");
         auto proof = f(std::forward<Args>(args)...);
         libff::leave_block("Call to r1cs_XX_ppzksnark_prover");
